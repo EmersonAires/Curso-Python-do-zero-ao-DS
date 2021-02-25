@@ -174,18 +174,35 @@ data['yr_built'] = pd.to_datetime(data['yr_built'], format = '%Y')
 
 #   18.4 Índices booleanos
 
-boolean = [True, True, True, False, False, False, False, True, False, False, False, False, False, False, False, False, True, False, False, False, False, False, False, False]
+# boolean = [True, True, True, False, False, False, False, True, False, False, False, False, False, False, False, False, True, False, False, False, False, False, False, False]
 
-print(data.loc[ : , boolean])
+# print(data.loc[ : , boolean])
 
 # 19. Salve um arquivo .csv com somente as colunas do item 10.
+
+# report = data[data['floors'] == 2]
+
+# path_report = 'C:/Users/emerson eduardo/Desktop/Engenharia Civil/Cursos/Python do zero ao DS/Curso-Python-do-zero-ao-DS/Exercícios/Projeto de Insights/DataSets/report2.csv'
+# report.to_csv(path_report, sep = ',', index = False)
+
 
 
 
 # 20 - Modifique a cor dos pontos no mapa de "pink" para "verde-escuro"
 
 
+data_mapa = data[['id', 'lat', 'long', 'price']]
 
+import plotly.express as px
+
+mapa = px.scatter_mapbox(data_mapa, lat='lat', lon='long', hover_name='id', 
+hover_data=['price'] , color_discrete_sequence=['dark green'], zoom=3, height=300) 
+
+mapa.update_layout(mapbox_style='open-street-map')
+mapa.update_layout(height=600, margin={'r':0, 't':0, 'l':0, 'b':0 })
+mapa.show()
+
+mapa.write_html('C:/Users/emerson eduardo/Desktop/Engenharia Civil/Cursos/Python do zero ao DS/Curso-Python-do-zero-ao-DS/Exercícios/Projeto de Insights/DataSets/mapa_house_rocket.html')
 
 
 
